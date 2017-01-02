@@ -17,9 +17,39 @@
   	<servlet-class>CalculatorServlet</servlet-class>
   </servlet>
   
+  <servlet>
+  	<servlet-name>Name</servlet-name>
+  	<servlet-class>NameServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+  	<servlet-name>EmpList</servlet-name>
+  	<servlet-class>EmpListServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+  	<servlet-name>EmpAllList</servlet-name>
+  	<servlet-class>emp.EmpListServlet</servlet-class>
+  </servlet>
+  
    <!-- 서블릿을 URL과 연결 -->
   <servlet-mapping>
   	<servlet-name>Calculator</servlet-name>
   	<url-pattern>/calc</url-pattern>
   </servlet-mapping>
-</web-app>
+  
+  <servlet-mapping>
+  	<servlet-name>EmpList</servlet-name>
+  	<url-pattern>/empList</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>Name</servlet-name>
+  	<url-pattern>/name</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>EmpAllList</servlet-name>
+  	<url-pattern>/empAllList</url-pattern>
+  </servlet-mapping>
+</web-app> 

@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -18,20 +19,23 @@ public class EmpListServlet extends GenericServlet {
 	public void service(ServletRequest request, ServletResponse response)
 			throws ServletException, IOException {
 		Connection conn = null;
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String dbUrl = "jdbc:oracle:thin:@127.0.0.1:1521:orcl"; // DB URL
 
+		String name = request.getParameter("name");
+		
 		try {
 			Class.forName("oracle.jdbc.OracleDriver"); // JDBC DRIVER
 	
 			conn = DriverManager.getConnection(dbUrl, "dasom", "dasom1204");
 
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(
-					"SELECT EMPNO,ENAME" + 
-					" FROM SCOTT.EMP" +
-					" ORDER BY EMPNO ASC");
+			String query = "SELECT EMPNO, ENAME FROM SCOTT.EMP WHERE ENAME = ?";
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, name);
+			
+			rs = pstmt.executeQuery();
 			
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -51,7 +55,7 @@ public class EmpListServlet extends GenericServlet {
 			
 		} finally {
 			try {if (rs != null) rs.close();} catch(Exception e) {}
-			try {if (stmt != null) stmt.close();} catch(Exception e) {}
+			try {if (pstmt != null) pstmt.close();} catch(Exception e) {}
 			try {if (conn != null) conn.close();} catch(Exception e) {}
 		}
 
