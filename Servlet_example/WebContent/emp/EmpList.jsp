@@ -28,17 +28,14 @@ for(Emp emp : empList) {
 %>
 
 <tr>
-
-	<td align ="center">< %= emp.getEmpno()    %></td> 
-	<td align ="center">< %= emp.geteName()    %></td>
-	<td align ="center">< %= emp.getJob()      %></td>
-	<td align ="center">< %= emp.getMgr()      %></td>
-	<td align ="center">< %= emp.getHireDate() %></td>
-	<td align ="right" >< %= emp.getSal()      %></td>
-	<td align ="right" >< %= emp.getComm()     %></td>
-	<td align ="center">< %= emp.getDeptno()   %></td>
-
-	
+	<td align ="center"><%= emp.getEmpno()    %></td> 
+	<td align ="center"><%= emp.geteName()    %></td>
+	<td align ="center"><%= emp.getJob()      %></td>
+	<td align ="center"><%= emp.getMgr()      %></td>
+	<td align ="center"><%= emp.getHireDate() %></td>
+	<td align ="right" ><%= emp.getSal()      %></td>
+	<td align ="right" ><%= emp.getComm()     %></td>
+	<td align ="center"><%= emp.getDeptno()   %></td>
 </tr>
 <%} // end for %>
 </table>
